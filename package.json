@@ -1,0 +1,23 @@
+{
+  "name": "01-red-posts",
+  "version": "1.0.0",
+  "description": "Se crea un proyecto de una red de posteos con el fin de poner en práctica lo aprendido",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Exe-Figueroa/01-Red-Posts.git"
+  },
+  "author": "Facundo Figueroa <facundofigueroa789@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Exe-Figueroa/01-Red-Posts/issues"
+  },
+  "homepage": "https://github.com/Exe-Figueroa/01-Red-Posts#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "faker": "^6.6.6"
+  }
+}
