@@ -99,7 +99,7 @@ class UsersService {
     return user;
   }
 
-  async create(data) {
+  async createUser(data) {
     const newUser = {
       id: (Math.random()*10+ 11).toFixed() ,
       ...data
@@ -108,7 +108,7 @@ class UsersService {
     return newUser;
   }
 
-  async delete(id) {
+  async deleteUser(id) {
     const index = this.users.findIndex(item => item.id === id);
     if (index === -1) {
       throw boom.notFound('product not found');
