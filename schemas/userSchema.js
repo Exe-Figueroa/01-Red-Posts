@@ -17,6 +17,7 @@ const createUserSchema = Joi.object({
 
 
 const updateUserSchema = Joi.object({
+  id: id.required(),
   name: name,
   lastName: lastName,
   username: username,
