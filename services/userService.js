@@ -99,6 +99,15 @@ class UsersService {
     return user;
   }
 
+  async create(data) {
+    const newUser = {
+      id: (Math.random()*10+ 11).toFixed() ,
+      ...data
+    }
+    this.users.push(newUser);
+    return newUser;
+  }
+
   async delete(id) {
     const index = this.users.findIndex(item => item.id === id);
     if (index === -1) {
