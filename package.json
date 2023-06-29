@@ -17,7 +17,9 @@
   },
   "homepage": "https://github.com/Exe-Figueroa/01-Red-Posts#readme",
   "dependencies": {
+    "@hapi/boom": "^10.0.1",
     "express": "^4.18.2",
-    "faker": "^6.6.6"
+    "joi": "^17.9.2",
+    "sequelize": "^6.32.1"
   }
 }
