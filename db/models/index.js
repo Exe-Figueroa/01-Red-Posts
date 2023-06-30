@@ -12,5 +12,6 @@ function setupModels(sequelize){
   Post.init(PostSchema, Post.config(sequelize))
 
   Post.associate(sequelize.models)
+  User.associate(sequelize.models)
 }
 module.exports = setupModels;

@@ -22,6 +22,7 @@ const UserSchema = {
   username: {
     allowNull: false,
     type: DataTypes.STRING,
+    unique: true,
   },
   email: {
     allowNull: false,
@@ -42,7 +43,7 @@ const UserSchema = {
 
 class User extends Model {
   static associate (models){
-
+    this.hasMany(models.Post, { foreignKey: 'userId', as: 'posts' });
   };
 
   static config(sequelize){

@@ -1,6 +1,6 @@
 const express = require('express');
-const routerApi = require('./routes/index.js')
-
+const routerApi = require('./routes/index.js');
+const cors = require('cors');
 const { logErrors, errorHandler, boomErrorHandler } = require('./middlewares/errorHandler.js');
 
 const app = express();
@@ -8,6 +8,7 @@ const PORT = 3000;
 
 
 app.use(express.json());
+app.use(cors());
 
 //Este es de prueba pa saber si funka
 app.get('/', (req, res)=>{

@@ -41,7 +41,10 @@ const PostSchema = {
 
 class Post extends Model {
   static associate (models){
-    this.belongsTo(models.User, {as: 'user'})
+    this.belongsTo(models.User, {
+      foreignKey: 'userId',
+      as: 'user'
+    })
   }
 
   static config(sequelize){
