@@ -77,8 +77,13 @@ class PostsService {
     }
     return post;
   }
-  async createPost() {
-    return [];
+  async createPost(data) {
+    const newPost = {
+      id: (Math.random()*10+ 11).toFixed() ,
+      ...data
+    }
+    this.posts.push(newPost);
+    return newPost;
   }
   async deletePost() {
     return [];

@@ -23,7 +23,19 @@ router.get('/:id',
   } catch (error) {
     next(error)
   }
-  
 });
+
+router.post('/',
+  validatorHandler(createPostSchema, 'body'),
+  async (req, res, next) => {
+    try {
+      const body = req.body;
+      const newPost = await service.createPost(body);
+      res.status(201).json(newPost);
+    } catch (error) {
+      next(error);
+    }
+  }
+);
 
 module.exports = router;
