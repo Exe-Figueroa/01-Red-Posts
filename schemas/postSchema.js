@@ -8,7 +8,7 @@ const userId = Joi.number().integer();
 const createPostSchema = Joi.object({
   title: title.required(),
   content: content.required(),
-  userId
+  userId: userId.required()
 });
 
 const getPostSchema = Joi.object({
