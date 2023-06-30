@@ -101,7 +101,7 @@ class UsersService {
 
   async createUser(data) {
     const newUser = {
-      id: (Math.random()*10+ 11).toFixed() ,
+      id: Number((Math.random()*10+ 11).toFixed()) ,
       ...data
     }
     this.users.push(newUser);

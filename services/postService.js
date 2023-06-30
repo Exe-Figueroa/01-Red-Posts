@@ -79,7 +79,7 @@ class PostsService {
   }
   async createPost(data) {
     const newPost = {
-      id: (Math.random()*10+ 11).toFixed() ,
+      id: Number((Math.random()*10+ 11).toFixed()) ,
       ...data
     }
     this.posts.push(newPost);
