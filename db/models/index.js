@@ -1,5 +1,6 @@
 //Acá se traen los modelos de las tablas
 const { User, UserSchema } = require('./usersModel.js');
+const {Post, PostSchema} = require('./postsModel.js');
 
 function setupModels(sequelize){
   /**Primero se inicializan
@@ -8,8 +9,8 @@ function setupModels(sequelize){
    * ?NombreModelo.associate(sequelize.models)
    */
   User.init(UserSchema, User.config(sequelize));
+  Post.init(PostSchema, Post.config(sequelize))
 
-  
-
+  Post.associate(sequelize.models)
 }
 module.exports = setupModels;

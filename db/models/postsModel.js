@@ -32,7 +32,7 @@ const PostSchema = {
     allowNull: false,
     unique: true,
     references: {
-      model: USER_TABLE,
+      model: USERS_TABLE,
       key: 'id'
     },
     onUpdate: 'CASCADE',
@@ -54,4 +54,6 @@ class Post extends Model {
     }
   }
 };
+
+module.exports = {Post, PostSchema, POSTS_TABLE}
 
