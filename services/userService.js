@@ -92,7 +92,7 @@ class UsersService {
   }
 
   async findOne(id) {
-    const user = this.users.find(item => Number(item.id) === id);
+    const user = this.users.find(item => item.id === id);
     if (!user) {
       throw boom.notFound('product not found');
     }

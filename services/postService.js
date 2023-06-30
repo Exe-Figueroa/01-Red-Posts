@@ -69,8 +69,13 @@ class PostsService {
   async find() {
     return this.posts;
   }
-  async findOne() {
-    return [];
+  async findOne(id) {
+    const userId = parseInt(id);
+    const post = this.posts.find((item)=>item.id === userId);
+    if (!post) {
+      throw boom.notFound('post not found')
+    }
+    return post;
   }
   async createPost() {
     return [];
