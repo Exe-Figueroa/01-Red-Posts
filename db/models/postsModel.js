@@ -30,7 +30,6 @@ const PostSchema = {
     type: DataTypes.INTEGER,
     field: 'user_id',
     allowNull: false,
-    unique: true,
     references: {
       model: USERS_TABLE,
       key: 'id'

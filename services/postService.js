@@ -6,10 +6,20 @@ class PostsService {
 
   }
 
+  // async find() {
+  //   const posts = await models.Post.findAll();
+  // }
+
   async find() {
-    const posts = await models.Post.findAll({
-      include: ['user']
-    });
+    try {
+      const posts = await models.Post.findAll({
+        include: ['user']
+      });
+      return posts;
+    } catch (error) {
+      console.error("Error al obtener los posts:", error);
+      throw boom.internal('Error al obtener los posts');
+    }
   }
   async findOne(id) {
     const post = await models.Post.findByPk(id);
