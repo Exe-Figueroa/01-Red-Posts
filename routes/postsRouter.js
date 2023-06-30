@@ -9,8 +9,8 @@ const service = new PostsService();
 
 router.get('/', async (req, res)=>{
   validatorHandler(getPostSchema, 'query');
-  const users = await service.find()
-  res.json(users)
+  const posts = await service.find()
+  res.json(posts)
 });
 
 router.get('/:id',
@@ -18,8 +18,8 @@ router.get('/:id',
   async (req, res, next)=>{
   try {
     const {id} = req.params;
-    const user = await service.findOne(id)
-    res.json(user)
+    const post = await service.findOne(id)
+    res.json(post)
   } catch (error) {
     next(error)
   }
@@ -37,5 +37,17 @@ router.post('/',
     }
   }
 );
+
+router.delete('/:id',
+  validatorHandler(getPostSchema, 'params'),
+  async (req, res, next)=>{
+  try {
+    const {id} = req.params;
+    const post = await service.findOne(id)
+    res.json(post)
+  } catch (error) {
+    next(error)
+  }
+});
 
 module.exports = router;
