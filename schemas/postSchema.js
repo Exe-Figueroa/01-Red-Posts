@@ -16,7 +16,6 @@ const getPostSchema = Joi.object({
 });
 
 const updatePostSchema = Joi.object({
-  id: id.required(),
   title,
   content
 });
