@@ -8,19 +8,21 @@ const router = express.Router();
 
 const service = new UsersService();
 
-router.get('/', async (req, res)=>{
-  validatorHandler(getUserSchema, 'query');//Se valida la información que viene en el query y si esta es correcta pasa a la siguiente línea
-  const users = await service.find()
-  res.json(users)
+router.get('/', async (req, res, next)=>{
+  try {
+    const users = await service.find()
+    res.json(users)
+  } catch (error) {
+    next(error)
+  }
 });
 
 router.get('/:id',
-  validatorHandler(getUserSchema, 'params'), 
+  validatorHandler(getUserSchema, 'params'),
   async (req, res, next )=>{
   try {
-    const {id} = req.params;
-    const userId = parseInt(id);
-    const user = await service.findOne(userId);
+    const { id } = req.params;
+    const user = await service.findOne(id);
     res.json(user)
   } catch (error) {
     next(error)
@@ -41,7 +43,7 @@ router.post('/',
 );
 
 router.delete('/:id',
-  validatorHandler(getUserSchema, 'params'), 
+  validatorHandler(getUserSchema, 'params'),
   async (req, res, next )=>{
   try {
     const {id} = req.params;
