@@ -70,8 +70,8 @@ class PostsService {
     return this.posts;
   }
   async findOne(id) {
-    const userId = parseInt(id);
-    const post = this.posts.find((item)=>item.id === userId);
+    const postId = parseInt(id);
+    const post = this.posts.find((item)=>item.id === postId);
     if (!post) {
       throw boom.notFound('post not found')
     }
@@ -85,8 +85,14 @@ class PostsService {
     this.posts.push(newPost);
     return newPost;
   }
-  async deletePost() {
-    return [];
+  async deletePost(id) {
+    const postId = parseInt(id);
+    const index = this.posts.findIndex(p => p.id === postId);
+    if (index === -1) {
+      throw boom.notFound('Post Not found')
+    }
+    this.posts.splice(index, 1)
+    return postId;
   }
 }
 
