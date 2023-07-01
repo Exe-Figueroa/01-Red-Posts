@@ -6,14 +6,16 @@ class PostsService {
 
   }
 
-  // async find() {
-  //   const posts = await models.Post.findAll();
-  // }
-
   async find() {
     try {
       const posts = await models.Post.findAll({
-        include: ['user']
+        include: [
+          {
+            model: models.User,
+            as: 'user',
+            attributes: { exclude: ['email', 'password'] } 
+          }
+        ]
       });
       return posts;
     } catch (error) {
