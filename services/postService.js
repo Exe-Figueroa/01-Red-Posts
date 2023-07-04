@@ -13,7 +13,7 @@ class PostsService {
           {
             model: models.User,
             as: 'user',
-            attributes: { exclude: ['email', 'password'] } 
+            attributes: { exclude: ['email', 'password'] }
           }
         ]
       });
@@ -25,7 +25,15 @@ class PostsService {
   }
   async findOne(id) {
     const post = await models.Post.findByPk(id, {
-      include: ['user']
+      include: [
+        {
+          model: models.User,
+          as: 'user',
+          attributes: {
+            exclude: ['email', 'password']
+          }
+        }
+    ]
     });
     if (!post) {
       throw boom.notFound('post not found')

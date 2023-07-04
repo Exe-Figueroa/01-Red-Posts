@@ -33,6 +33,9 @@ const UserSchema = {
     allowNull: false,
     type: DataTypes.STRING,
   },
+  description: {
+    type: DataTypes.TEXT
+  },
   createdAt: {
     allowNull: false,
     type: DataTypes.DATE,
