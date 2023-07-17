@@ -4,6 +4,9 @@ const cors = require('cors');
 const { logErrors, errorHandler, boomErrorHandler } = require('./middlewares/errorHandler.js');
 
 const app = express();
+const server = require('http').Server(app);
+const io = require('socket.io')(server);
+
 const PORT = 3000;
 
 
@@ -15,6 +18,9 @@ app.get('/', (req, res)=>{
   res.send('Hola este es mi server')
 });
 
+io.on('connection', (socket)=>{
+  console.log('alguien se ha conectado con socket')
+})
 //Acá le envío la app a routerApi que se va a encargar de administrar la info que devuelve según el endpoint que se coloque
 routerApi(app);
 
@@ -24,6 +30,6 @@ app.use(logErrors);
 app.use(boomErrorHandler);
 app.use(errorHandler);
 
-app.listen(PORT, ()=>{
+server.listen(PORT, ()=>{
   console.log(`corriendo en el puerto ${PORT}`);
 })

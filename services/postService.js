@@ -2,9 +2,7 @@ const boom = require('@hapi/boom');
 const { models } = require('../libs/sequelize');
 
 class PostsService {
-  constructor() {
-
-  }
+  constructor() {}
 
   async find() {
     try {

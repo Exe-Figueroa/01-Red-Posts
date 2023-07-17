@@ -19,4 +19,4 @@ services:
     ports:
       - 5050:80
     depends_on:
-      - postgres 
+      - postgres
