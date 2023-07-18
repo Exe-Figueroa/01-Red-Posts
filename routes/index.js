@@ -3,7 +3,7 @@ const express = require('express');
 const usersRouter = require('./usersRouter.js')
 const postsRouter = require('./postsRouter.js')
 
-function routerApi(app) {
+function routerApi(app, postService) {
   const router = express.Router();
   app.use('/api/v1', router);
   router.use('/users', usersRouter);

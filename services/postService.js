@@ -1,8 +1,9 @@
 const boom = require('@hapi/boom');
 const { models } = require('../libs/sequelize');
-
+const { socket } = require('../socket.js');
 class PostsService {
-  constructor() {}
+  constructor() {
+  }
 
   async find() {
     try {
@@ -15,6 +16,7 @@ class PostsService {
           }
         ]
       });
+
       return posts;
     } catch (error) {
       console.error("Error al obtener los posts:", error);
@@ -40,6 +42,7 @@ class PostsService {
   }
   async createPost(data) {
     const newPost = await models.Post.create(data);
+    socket.io.emit('posts', newPost);
     return newPost;
   }
 
