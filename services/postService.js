@@ -42,7 +42,8 @@ class PostsService {
   }
   async createPost(data) {
     const newPost = await models.Post.create(data);
-    socket.io.emit('posts', newPost);
+    const completePost = await this.findOne(newPost.dataValues.id)
+    socket.io.emit('posts', completePost.dataValues);
     return newPost;
   }
 
