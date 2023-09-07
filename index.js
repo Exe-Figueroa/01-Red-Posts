@@ -1,4 +1,5 @@
 const express = require('express');
+
 const app = express();
 
 const server = require('http').Server(app);
@@ -11,7 +12,6 @@ const routerApi = require('./routes/index.js');
 const cors = require('cors');
 const { logErrors, errorHandler, boomErrorHandler } = require('./middlewares/errorHandler.js');
 
-const PostsService = require('./services/postService.js');
 
 
 

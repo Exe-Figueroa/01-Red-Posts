@@ -29,7 +29,7 @@ const PostSchema = {
   userId: {
     type: DataTypes.INTEGER,
     field: 'user_id',
-    allowNull: false,
+    allowNull: true,
     references: {
       model: USERS_TABLE,
       key: 'id'
