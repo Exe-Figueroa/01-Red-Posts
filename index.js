@@ -14,7 +14,6 @@ const { logErrors, errorHandler, boomErrorHandler } = require('./middlewares/err
 
 
 
-
 app.use(express.json());
 app.use(cors());
 

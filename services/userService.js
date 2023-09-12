@@ -6,7 +6,8 @@ class UsersService {
 
   async find() {
     const users = await models.User.findAll({
-      include: ['posts']
+      include: [ 'posts' ],
+      attributes: { exclude: ['email', 'password'] }
     });
     return users;
   }

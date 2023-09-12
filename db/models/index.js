@@ -1,6 +1,6 @@
 //Acá se traen los modelos de las tablas
 const { User, UserSchema } = require('./usersModel.js');
-const {Post, PostSchema} = require('./postsModel.js');
+const { Post, PostSchema } = require('./postsModel.js');
 
 function setupModels(sequelize){
   /**Primero se inicializan
