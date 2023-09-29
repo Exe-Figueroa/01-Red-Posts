@@ -3,9 +3,6 @@ const AuthService = require('../services/auth.service.js');
 
 const router = express.Router();
 const service = new AuthService();
-router.get('/', (req, res)=>{
-  res.send('endpoint')
-})
 
 router.post('/', async (req, res) => {
   try {
