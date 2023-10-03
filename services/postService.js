@@ -2,9 +2,6 @@ const boom = require('@hapi/boom');
 const { models } = require('../libs/sequelize');
 const { socket } = require('../socket.js');
 class PostsService {
-  constructor() {
-  }
-
   async find() {
     try {
       const posts = await models.Post.findAll({
@@ -20,9 +17,10 @@ class PostsService {
       return posts;
     } catch (error) {
       console.error("Error al obtener los posts:", error);
+      console.log("Puto el que lee");
       throw boom.internal('Error al obtener los posts');
-    }
-  }
+    };
+  };
   async findOne(id) {
     const post = await models.Post.findByPk(id, {
       include: [
@@ -37,15 +35,15 @@ class PostsService {
     });
     if (!post) {
       throw boom.notFound('post not found')
-    }
+    };
     return post;
-  }
+  };
   async createPost(data) {
     const newPost = await models.Post.create(data);
-    const completePost = await this.findOne(newPost.dataValues.id)
+    const completePost = await this.findOne(newPost.dataValues.id);
     socket.io.emit('posts', completePost.dataValues);
     return newPost;
-  }
+  };
 
   async deletePost(id) {
     const post = await this.findOne(id);
