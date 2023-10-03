@@ -2,7 +2,7 @@ const express = require('express');
 
 const UsersService = require('../services/userService');
 const validatorHandler = require('../middlewares/validatorHandler.js');
-const { createUserSchema, updateUserSchema, getUserSchema } = require('../schemas/userSchema.js')
+const { createUserSchema, getUserSchema } = require('../schemas/userSchema.js')
 
 const router = express.Router();
 
@@ -28,7 +28,7 @@ router.get('/:id',
       next(error)
     }
   });
-  
+
   router.get('/email/:email',
   async (req, res) => {
     try {

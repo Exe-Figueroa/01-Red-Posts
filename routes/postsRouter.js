@@ -1,13 +1,15 @@
 const express = require('express');
 
-const PostsService  = require('../services/postService.js')
+const PostsService = require('../services/postService.js')
 const validatorHandler = require('../middlewares/validatorHandler.js');
+const verifyJWT = require('../middlewares/jwtHandler.js');
+
 const { getPostSchema, createPostSchema, updatePostSchema } = require('../schemas/postSchema.js')
 
 const router = express.Router();
 const service = new PostsService();
 
-router.get('/', async (req, res)=>{
+router.get('/', verifyJWT, async (req, res) => {
   validatorHandler(getPostSchema, 'query');
   const posts = await service.find()
   res.json(posts)
@@ -15,15 +17,15 @@ router.get('/', async (req, res)=>{
 
 router.get('/:id',
   validatorHandler(getPostSchema, 'params'),
-  async (req, res, next)=>{
-  try {
-    const {id} = req.params;
-    const post = await service.findOne(id)
-    res.json(post)
-  } catch (error) {
-    next(error)
-  }
-});
+  async (req, res, next) => {
+    try {
+      const { id } = req.params;
+      const post = await service.findOne(id)
+      res.json(post)
+    } catch (error) {
+      next(error)
+    }
+  });
 
 router.post('/',
   validatorHandler(createPostSchema, 'body'),
@@ -40,14 +42,14 @@ router.post('/',
 
 router.delete('/:id',
   validatorHandler(getPostSchema, 'params'),
-  async (req, res, next)=>{
-  try {
-    const {id} = req.params;
-    const post = await service.deletePost(id)
-    res.json(post)
-  } catch (error) {
-    next(error)
-  }
-});
+  async (req, res, next) => {
+    try {
+      const { id } = req.params;
+      const post = await service.deletePost(id)
+      res.json(post)
+    } catch (error) {
+      next(error)
+    }
+  });
 
 module.exports = router;

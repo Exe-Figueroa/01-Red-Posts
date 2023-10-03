@@ -10,14 +10,14 @@ class AuthService {
   signToken(username, password){
     const payload = {
       sub: username,
-      password: password
+      // password: password
     };
 
     const token = jwt.sign(payload, config.secret)
     console.log({payload, token});
     return {
       username,
-      password,
+      // password,
       token
     }
   }
