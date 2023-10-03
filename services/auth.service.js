@@ -1,26 +1,19 @@
-// const express = require('express');
 const jwt = require('jsonwebtoken');
 const {config} = require('../config/config.js');
 
-// const UsersService = require('./userService.js');
-
-// const service = new UsersService;
-
 class AuthService {
-  signToken(username, password){
+  signToken(username){
     const payload = {
       sub: username,
-      // password: password
     };
 
-    const token = jwt.sign(payload, config.secret)
+    const token = jwt.sign(payload, config.secret, { expiresIn: '1d' });
     console.log({payload, token});
     return {
       username,
-      // password,
       token
-    }
+    };
   }
-}
+};
 
 module.exports = AuthService;

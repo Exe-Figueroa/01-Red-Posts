@@ -16,6 +16,7 @@ router.get('/', verifyJWT, async (req, res) => {
 });
 
 router.get('/:id',
+  verifyJWT,
   validatorHandler(getPostSchema, 'params'),
   async (req, res, next) => {
     try {
@@ -28,6 +29,7 @@ router.get('/:id',
   });
 
 router.post('/',
+  verifyJWT,
   validatorHandler(createPostSchema, 'body'),
   async (req, res, next) => {
     try {
@@ -41,6 +43,7 @@ router.post('/',
 );
 
 router.delete('/:id',
+  verifyJWT,
   validatorHandler(getPostSchema, 'params'),
   async (req, res, next) => {
     try {
