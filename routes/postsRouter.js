@@ -9,11 +9,13 @@ const { getPostSchema, createPostSchema, updatePostSchema } = require('../schema
 const router = express.Router();
 const service = new PostsService();
 
-router.get('/', verifyJWT, async (req, res) => {
-  validatorHandler(getPostSchema, 'query');
-  const posts = await service.find()
-  res.json(posts)
-});
+router.get('/',
+  verifyJWT,
+  async (req, res) => {
+    validatorHandler(getPostSchema, 'query');
+    const posts = await service.find()
+    res.json(posts)
+  });
 
 router.get('/:id',
   verifyJWT,

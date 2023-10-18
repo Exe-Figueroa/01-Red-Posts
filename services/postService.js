@@ -17,7 +17,6 @@ class PostsService {
       return posts;
     } catch (error) {
       console.error("Error al obtener los posts:", error);
-      console.log("Puto el que lee");
       throw boom.internal('Error al obtener los posts');
     };
   };
