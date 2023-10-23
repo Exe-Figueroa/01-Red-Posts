@@ -18,8 +18,6 @@ app.use(express.json());
 app.use(cors());
 
 
-const PORT = 3000;
-
 //Este es de prueba pa saber si funka
 app.get('/', (req, res)=>{
   res.send('Hola este es mi server')
@@ -35,6 +33,6 @@ app.use(boomErrorHandler);
 app.use(errorHandler);
 
 
-server.listen(PORT, ()=>{
-  console.log(`corriendo en el puerto ${PORT}`);
+server.listen(3000, ()=>{
+  console.log(`corriendo en el puerto 3000`);
 });

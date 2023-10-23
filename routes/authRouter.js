@@ -12,7 +12,9 @@ router.post('/', async (req, res) => {
     const isMatch = await verifyUser(username, password);
     console.log({isMatch});
     if (isMatch) {
-      res.json(service.signToken(username, password));
+      const userToken = await service.signToken(username, password);
+      console.log(userToken);
+      res.json(userToken);
     } else {
       res.status(404).json({message: 'User not found or wrong password'});
     }

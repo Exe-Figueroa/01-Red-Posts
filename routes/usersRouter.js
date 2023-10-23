@@ -76,7 +76,6 @@ router.get('/username/:username',
   async (req, res) => {
     try {
       const { username } = req.params;
-      console.log({ username });
       const user = await service.findByUsername(username);
       res.json(user);
     } catch (error) {
