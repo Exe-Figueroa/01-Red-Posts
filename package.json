@@ -4,6 +4,7 @@
   "description": "Se crea un proyecto de una red de posteos con el fin de poner en práctica lo aprendido",
   "main": "index.js",
   "scripts": {
+    "build": "npm i"
     "dev": "nodemon index.js",
     "start": "node index.js",
     "migrations:generate": "sequelize-cli migration:generate --name",
