@@ -12,3 +12,4 @@ const config = {
 };
 
 module.exports = {config} ;
+// RUN npm run migrations:run
