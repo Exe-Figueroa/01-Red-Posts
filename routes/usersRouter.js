@@ -2,22 +2,26 @@ const express = require('express');
 
 const UsersService = require('../services/userService');
 const validatorHandler = require('../middlewares/validatorHandler.js');
-const { createUserSchema, getUserSchema } = require('../schemas/userSchema.js')
+// const verifyJWT = require('../middlewares/jwtHandler');
+const { createUserSchema, getUserSchema } = require('../schemas/userSchema.js');
 
 const router = express.Router();
 
 const service = new UsersService();
 
-router.get('/', async (req, res, next) => {
-  try {
-    const users = await service.find()
-    res.json(users)
-  } catch (error) {
-    next(error)
-  }
-});
+router.get('/',
+  // verifyJWT,
+  async (req, res, next) => {
+    try {
+      const users = await service.find()
+      res.json(users)
+    } catch (error) {
+      next(error)
+    }
+  });
 
 router.get('/:id',
+  // verifyJWT,
   validatorHandler(getUserSchema, 'params'),
   async (req, res, next) => {
     try {
@@ -28,31 +32,6 @@ router.get('/:id',
       next(error)
     }
   });
-
-// router.get('/email/:email',
-//   async (req, res) => {
-//     try {
-//       const { email } = req.params;
-//       const user = await service.findByEmail(email + '@gmail.com');
-//       res.json(user);
-//     } catch (error) {
-//       console.error(error);
-//       res.status(500).json({ error: 'Internal Server Error' });
-//     }
-//   });
-
-// router.get('/username/:username',
-//   async (req, res) => {
-//     try {
-//       const { username } = req.params;
-//       console.log({username});
-//       const user = await service.findByUsername(username);
-//       res.json(user);
-//     } catch (error) {
-//       console.error(error);
-//       res.status(500).json({ error: 'Internal Server Error' });
-//     }
-//   });
 
 router.post('/',
   validatorHandler(createUserSchema, 'body'),
@@ -68,6 +47,7 @@ router.post('/',
 );
 
 router.delete('/:id',
+  // verifyJWT,
   validatorHandler(getUserSchema, 'params'),
   async (req, res, next) => {
     try {
