@@ -12,7 +12,7 @@ router.post('/', async (req, res) => {
     const isMatch = await verifyUser(username, password);
     console.log({isMatch});
     if (isMatch) {
-      const userToken = await service.signToken(username, password);
+      const userToken = service.signToken(username, password);
       console.log(userToken);
       res.json(userToken);
     } else {
