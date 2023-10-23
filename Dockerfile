@@ -4,7 +4,6 @@ RUN mkdir -p /usr/src/my-store-two
 
 WORKDIR /usr/src/my-store-two
 
-
 ARG DB_HOST
 ARG DB_PORT
 ARG DB_PASSWORD
