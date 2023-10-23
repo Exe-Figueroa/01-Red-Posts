@@ -1,8 +1,8 @@
 FROM node:16 AS build
 
-RUN mkdir -p /usr/src/my-store
+RUN mkdir -p /usr/src/my-store-two
 
-WORKDIR /usr/src/my-store
+WORKDIR /usr/src/my-store-two
 
 
 ARG DB_HOST
