@@ -60,5 +60,29 @@ router.delete('/:id',
     }
   });
 
+router.get('/email/:email',
+  async (req, res) => {
+    try {
+      const { email } = req.params;
+      const user = await service.findByEmail(email + '@gmail.com');
+      res.json(user);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Internal Server Error' });
+    }
+  });
+
+router.get('/username/:username',
+  async (req, res) => {
+    try {
+      const { username } = req.params;
+      console.log({ username });
+      const user = await service.findByUsername(username);
+      res.json(user);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Internal Server Error' });
+    }
+  });
 
 module.exports = router;
