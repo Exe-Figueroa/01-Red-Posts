@@ -9,7 +9,6 @@ class AuthService {
     };
 
     const token = jwt.sign(payload, config.secret, { expiresIn: '1d' });
-    console.log(token);
     return {
       username,
       password,
