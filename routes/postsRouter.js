@@ -13,7 +13,7 @@ router.get('/',
   verifyJWT,
   async (req, res) => {
     validatorHandler(getPostSchema, 'query');
-    const posts = await service.find()
+    const posts = await service.find();
     res.json(posts)
   });
 

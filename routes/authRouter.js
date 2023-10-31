@@ -9,9 +9,9 @@ const userService = new UserService();
 router.post('/', async (req, res) => {
   try {
     const { username, password } = req.body;
-    const isMatch = await verifyUser(username, password);
+    const {isMatch, userId} = await verifyUser(username, password);
     if (isMatch) {
-      const userToken = service.signToken(username, password);
+      const userToken = service.signToken(username, password, userId);
       res.json(userToken);
     } else {
       res.status(404).json({message: 'User not found or wrong password'});
@@ -25,9 +25,9 @@ async function verifyUser(username, password) {
   try {
     const user = await userService.findByUsername(username);
     if (user.username === username && user.password === password) {
-      return true;
+      return {isMatch: true, userId: user.id};
     } else {
-      return false
+      return {isMatch: false, userId: null};
     }
   } catch {
     return false;
