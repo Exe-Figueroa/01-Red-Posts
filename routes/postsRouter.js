@@ -10,7 +10,6 @@ const router = express.Router();
 const service = new PostsService();
 
 router.get('/',
-  verifyJWT,
   async (req, res) => {
     validatorHandler(getPostSchema, 'query');
     const posts = await service.find();
@@ -31,7 +30,6 @@ router.get('/:id',
   });
 
 router.post('/',
-  verifyJWT,
   validatorHandler(createPostSchema, 'body'),
   async (req, res, next) => {
     try {
