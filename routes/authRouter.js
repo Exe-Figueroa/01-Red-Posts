@@ -1,10 +1,9 @@
 const express = require('express');
 const AuthService = require('../services/auth.service.js');
-const UserService = require('../services/userService.js');
+const {verifyUser} = require('../middlewares/userHandler.js')
 
 const router = express.Router();
 const service = new AuthService();
-const userService = new UserService();
 
 router.post('/', async (req, res) => {
   try {
@@ -21,17 +20,6 @@ router.post('/', async (req, res) => {
   }
 });
 
-async function verifyUser(username, password) {
-  try {
-    const user = await userService.findByUsername(username);
-    if (user.username === username && user.password === password) {
-      return {isMatch: true, userId: user.id};
-    } else {
-      return {isMatch: false, userId: null};
-    }
-  } catch {
-    return false;
-  }
-};
+
 
 module.exports = router;

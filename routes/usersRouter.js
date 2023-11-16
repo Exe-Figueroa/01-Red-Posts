@@ -4,6 +4,7 @@ const UsersService = require('../services/userService');
 const validatorHandler = require('../middlewares/validatorHandler.js');
 // const verifyJWT = require('../middlewares/jwtHandler');
 const { createUserSchema, getUserSchema } = require('../schemas/userSchema.js');
+const { userHandler } = require('../middlewares/userHandler.js');
 
 const router = express.Router();
 
@@ -29,12 +30,13 @@ router.get('/:id',
       const user = await service.findOne(id);
       res.json(user)
     } catch (error) {
-      next(error)
+      next(error);
     }
   });
 
 router.post('/',
   validatorHandler(createUserSchema, 'body'),
+  userHandler,
   async (req, res, next) => {
     try {
       const body = req.body;
