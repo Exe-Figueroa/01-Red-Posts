@@ -2,6 +2,7 @@ const express = require('express');
 
 const app = express();
 const server = require('http').Server(app);
+const io = require('socket.io')(server);
 
 const socketJs = require('./socket.js')
 
@@ -11,7 +12,9 @@ const routerApi = require('./routes/index.js');
 const cors = require('cors');
 const { logErrors, errorHandler, boomErrorHandler } = require('./middlewares/errorHandler.js');
 
-
+io.on('connection', (socket)=>{
+  console.log('alguien se ha conectado con el websocket')
+})
 
 app.use(express.json());
 app.use(cors());
