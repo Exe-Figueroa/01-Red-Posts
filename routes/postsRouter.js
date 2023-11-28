@@ -18,7 +18,7 @@ router.get('/',
   });
 
 router.get('/:id',
-  verifyJWT,
+  // verifyJWT,
   validatorHandler(getPostSchema, 'params'),
   async (req, res, next) => {
     try {

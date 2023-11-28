@@ -18,7 +18,7 @@ app.use(cors());
 
 
 //Este es de prueba pa saber si funka
-app.get('/', (req, res)=>{
+app.get('/', (req, res) => {
   res.send('Hola este es mi server')
 });
 
@@ -31,7 +31,6 @@ app.use(logErrors);
 app.use(boomErrorHandler);
 app.use(errorHandler);
 
-
-server.listen(3000, ()=>{
+server.listen(3000, () => {
   console.log(`corriendo en el puerto 3000`);
 });
