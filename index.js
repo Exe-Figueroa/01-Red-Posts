@@ -2,6 +2,7 @@ const express = require('express');
 
 const app = express();
 const server = require('http').Server(app);
+const io = require('socket.io')(server);
 
 const socketJs = require('./socket.js')
 
@@ -11,14 +12,16 @@ const routerApi = require('./routes/index.js');
 const cors = require('cors');
 const { logErrors, errorHandler, boomErrorHandler } = require('./middlewares/errorHandler.js');
 
-
+io.on('connection', (socket)=>{
+  console.log('alguien se ha conectado con el websocket')
+})
 
 app.use(express.json());
 app.use(cors());
 
 
 //Este es de prueba pa saber si funka
-app.get('/', (req, res)=>{
+app.get('/', (req, res) => {
   res.send('Hola este es mi server')
 });
 
@@ -31,7 +34,6 @@ app.use(logErrors);
 app.use(boomErrorHandler);
 app.use(errorHandler);
 
-
-server.listen(3000, ()=>{
+server.listen(3000, () => {
   console.log(`corriendo en el puerto 3000`);
 });
