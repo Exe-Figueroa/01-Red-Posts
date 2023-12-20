@@ -18,7 +18,7 @@ async function userHandler(req, res, next) {
     res.status(500).json({ message: 'Internal Server Error' });
   }
 }
-async function verifyUser(username, password) {
+async function verifyUsername(username, password) {
   try {
     const user = await userService.findByUsername(username);
     if (user.username === username && user.password === password) {
@@ -30,4 +30,16 @@ async function verifyUser(username, password) {
     return false;
   }
 };
-module.exports = { verifyUser, userHandler };
+async function verifyEmailUser(email, password) {
+  try {
+    const user = await userService.findByEmail(email);
+    if (user.email === email && user.password === password) {
+      return { isMatch: true, userId: user.id };
+    } else {
+      return { isMatch: false, userId: null };
+    }
+  } catch {
+    return false;
+  }
+};
+module.exports = { verifyUsername, userHandler, verifyEmailUser };

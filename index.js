@@ -14,7 +14,7 @@ const { logErrors, errorHandler, boomErrorHandler } = require('./middlewares/err
 
 io.on('connection', (socket)=>{
   console.log('alguien se ha conectado con el websocket')
-})
+});
 
 app.use(express.json());
 app.use(cors());
