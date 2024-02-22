@@ -1,17 +1,18 @@
 const boom = require('@hapi/boom');
 const { models } = require('./../libs/sequelize');
+const { hashPassword } = require('../utils/hash');
 
-class UsersService {
+class UserService {
   async find() {
     const users = await models.User.findAll({
-      include: [ 'posts' ],
+      include: ['posts'],
       attributes: { exclude: ['email', 'password'] }
     });
     return users;
   };
 
   async findOne(id) {
-    const user = await models.User.findByPk(id,{
+    const user = await models.User.findByPk(id, {
       include: ['posts']
     });
     if (!user) {
@@ -24,7 +25,6 @@ class UsersService {
     const user = await models.User.findOne({
       where: { email }
     });
-    console.log(user);
     return user;
   }
   async findByUsername(username) {
@@ -33,16 +33,26 @@ class UsersService {
     });
     return user;
   }
+
   async createUser(data) {
-    const newUser = await models.User.create(data);
-    return newUser;
-  };
+    try {
+      const hasshedPassword = await hashPassword(data.password);
+      data.password = hasshedPassword;
+      const newUser = await models.User.create(data);
+      return newUser;
+      // Resto del código
+    } catch (error) {
+      // Manejo de errores
+      console.error('Error hashing password:', error);
+      throw boom.internal('Error hashing password');
+    }
+  }
 
   async deleteUser(id) {
     const user = await this.findOne(id);
     await user.destroy(user);
-    return {id};
+    return { id };
   };
 
 };
-module.exports = UsersService;
+module.exports = UserService;
