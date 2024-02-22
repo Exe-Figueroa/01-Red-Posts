@@ -43,6 +43,21 @@ router.post('/',
     }
   }
 );
+router.patch('/:id',
+  verifyJWT,
+  validatorHandler(updatePostSchema, 'body'),
+  async (req, res, next) => {
+    try {
+      const body = req.body;
+      const { id } = req.params;
+      console.log({body, id});
+      const updatedPost = await service.updatePost(body, Number(id));
+      res.status(201).json(updatedPost);
+    } catch (error) {
+      next(error);
+    }
+  }
+);
 
 router.delete('/:id',
   verifyJWT,

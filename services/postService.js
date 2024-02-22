@@ -44,6 +44,16 @@ class PostsService {
     return newPost;
   };
 
+  async updatePost(payload, postId) {
+    const updatedPost = await models.Post.update(payload, {
+      where: {
+        id: postId,
+      },
+      returning: true,
+    });
+    return updatedPost;
+  };
+
   async deletePost(id) {
     const post = await this.findOne(id);
     await post.destroy(id);
