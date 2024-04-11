@@ -10,7 +10,7 @@ const router = express.Router();
 const service = new PostsService();
 
 router.get('/',
-  verifyJWT,
+ // verifyJWT,
   async (req, res) => {
     validatorHandler(getPostSchema, 'query');
     const posts = await service.find();
@@ -31,7 +31,7 @@ router.get('/:id',
   });
 
 router.post('/',
-  verifyJWT,
+  //verifyJWT,
   validatorHandler(createPostSchema, 'body'),
   async (req, res, next) => {
     try {
@@ -44,7 +44,7 @@ router.post('/',
   }
 );
 router.patch('/:id',
-  verifyJWT,
+  //verifyJWT,
   validatorHandler(updatePostSchema, 'body'),
   async (req, res, next) => {
     try {
@@ -60,7 +60,7 @@ router.patch('/:id',
 );
 
 router.delete('/:id',
-  verifyJWT,
+  //verifyJWT,
   validatorHandler(getPostSchema, 'params'),
   async (req, res, next) => {
     try {
